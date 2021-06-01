@@ -8,4 +8,10 @@ export default class AuthController {
     const token = await auth.use('api').attempt(username, password)
     return token.toJSON()
   }
+
+  public async GetUser({ auth }: HttpContextContract) {
+    return auth.user
+  }
+
+  
 }
