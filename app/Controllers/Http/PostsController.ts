@@ -5,9 +5,9 @@ import Post from 'App/Models/Post'
 
 export default class PostsController {
   public async index(){
-    const data = Post.all()
+    const posts = Post.query().preload('user').orderBy('id', 'desc')
 
-    return data
+    return posts
   }
 
   public async store({ request, auth }: HttpContextContract){
