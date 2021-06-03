@@ -33,4 +33,5 @@ Route.post('/auth', 'AuthController.login')
 //post
 Route.get('posts', 'PostsController.index')
 Route.post('post', 'PostsController.store')
+Route.delete('/post/:id', 'PostsController.delete')
 

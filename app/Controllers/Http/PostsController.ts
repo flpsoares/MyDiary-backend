@@ -5,7 +5,7 @@ import Post from 'App/Models/Post'
 
 export default class PostsController {
   public async index(){
-    const posts = Post.query().preload('user').orderBy('id', 'desc')
+    const posts = Post.query().preload('user')
 
     return posts
   }
@@ -14,7 +14,7 @@ export default class PostsController {
     const validatedData = await request.validate({
       schema: schema.create({
         content: schema.string({}, [
-          rules.unique({table: 'posts', column: 'content'})
+          rules.required()
         ]),
       }),
       messages: {
@@ -30,4 +30,14 @@ export default class PostsController {
 
     return post
   }
+
+  public async delete({ params, response}: HttpContextContract) {
+    const post = await Post.findOrFail(params.id)
+
+    post.delete()
+
+    return response.json({ message: 'Post deleted' })
+  }
 }
+
+
