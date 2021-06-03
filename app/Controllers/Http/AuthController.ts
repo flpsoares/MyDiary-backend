@@ -12,6 +12,4 @@ export default class AuthController {
   public async GetUser({ auth }: HttpContextContract) {
     return auth.user
   }
-
-  
 }
