@@ -35,3 +35,8 @@ Route.get('posts', 'PostsController.index')
 Route.post('post', 'PostsController.store')
 Route.delete('/post/:id', 'PostsController.delete')
 
+//image 
+Route.get('images', 'ImagesController.index')
+Route.get('image/:filename', 'ImagesController.show')
+Route.post('image', 'ImagesController.store')
+

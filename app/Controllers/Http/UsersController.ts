@@ -1,4 +1,5 @@
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
+// import Mail from '@ioc:Adonis/Addons/Mail'
 
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
@@ -29,6 +30,14 @@ export default class UsersController {
         'email.email': 'Invalid email'
       }
     })
+
+    // await Mail.send((message) => {
+    //   message
+    //     .from('filipeseventeen1@gmail.com')
+    //     .to('filipeseventeen1@gmail.com')
+    //     .subject('teste')
+    //     .text('salve')
+    // }).then((res) => console.log(res))
 
     const user = User.create(validatedData)
 
