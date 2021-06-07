@@ -23,6 +23,7 @@ export default class PostsController {
     })
 
     const post = await Post.create(validatedData)
+
     if(auth.user) {
       await post.related('user').associate(auth.user)
       await post.load('user')
