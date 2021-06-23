@@ -21,11 +21,11 @@ export default class ImagesController {
     })
 
     const payload = await request.validate({ schema: validatedImage })
-
-    const imageName = `${Date.now()}-${payload.filename}`
-
-    const image = Image.create({filename: imageName, size: payload.image.size})
     
+    const imageName = `${Date.now()}-${payload.filename}`
+    
+    const image = Image.create({filename: imageName, size: payload.image.size})
+
     await payload.image.move(Application.tmpPath('uploads'), {name: imageName})
 
     return image

@@ -8,8 +8,10 @@ export default class Images extends BaseSchema {
       table.increments('id')
       table.string('filename').notNullable()
       table.double('size').notNullable()
-      table.integer('user_id').references('id').inTable('users').onUpdate('CASCADE').onDelete('CASCADE').nullable()
       table.timestamps(true)
+    })
+    this.schema.table('users', (table) => {
+      table.integer('image_id').references('id').inTable('images').onUpdate('CASCADE').onDelete('CASCADE').nullable()
     })
   }
 

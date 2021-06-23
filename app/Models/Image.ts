@@ -11,9 +11,6 @@ export default class Image extends BaseModel {
   @column()
   public size: number
 
-  @column()
-  public user_id: number
-
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

@@ -4,7 +4,10 @@ import {
   column,
   beforeSave,
   BaseModel,
+  belongsTo,
+  BelongsTo
 } from '@ioc:Adonis/Lucid/Orm'
+import Image from './Image'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -20,6 +23,9 @@ export default class User extends BaseModel {
   public email: string
 
   @column()
+  public imageId: number
+
+  @column()
   public rememberMeToken?: string
 
   @column.dateTime({ autoCreate: true })
@@ -27,6 +33,9 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @belongsTo(() => Image, {foreignKey: 'imageId', localKey: 'id'})
+  public image: BelongsTo<typeof Image>
 
   @beforeSave()
   public static async hashPassword (user: User) {
