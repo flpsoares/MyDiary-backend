@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, computed } from '@ioc:Adonis/Lucid/Orm'
+
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class Image extends BaseModel {
   @column({ isPrimary: true })
@@ -10,6 +12,11 @@ export default class Image extends BaseModel {
 
   @column()
   public size: number
+
+  @computed()
+  public get url() {
+    return `${Env.get("SET_URL")}/file?path=uploads/${this.filename}`
+  }
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

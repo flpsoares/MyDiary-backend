@@ -31,15 +31,14 @@ export default class PostsController {
     })
 
     const payload = await request.validate({ schema: validatedImage })
-
     const post = await Post.create(validatedData)
 
-    if(payload.filename) {
+    if(payload.image) {
       const imageName = `${Date.now()}-${payload.filename}`
       
-      const image = Image.create({filename: imageName, size: payload.image?.size})
+      const image = Image.create({filename: imageName, size: payload.image.size})
   
-      await payload.image?.move(Application.tmpPath('uploads'), {name: imageName})
+      await payload.image.move(Application.tmpPath('uploads'), {name: imageName})
       
       if(payload) {
         await post.related('image').associate(await image)

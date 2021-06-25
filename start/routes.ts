@@ -40,3 +40,6 @@ Route.get('images', 'ImagesController.index')
 Route.get('image/:filename', 'ImagesController.show')
 Route.post('image', 'ImagesController.store')
 
+//file system
+Route.get('file', 'FileSystemsController.index').as('fileshow')
+
