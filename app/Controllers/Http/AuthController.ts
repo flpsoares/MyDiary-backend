@@ -10,6 +10,8 @@ export default class AuthController {
   }
 
   public async GetUser({ auth }: HttpContextContract) {
+    await auth.user?.load('image')
+
     return auth.user
   }
 }
